@@ -27,4 +27,9 @@ public class ValidityExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorResponse error = new ErrorResponse(ex.getErrorMessage());
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(UserRegisteredException.class)
+    public final ResponseEntity<ErrorResponse> handleUSerRegisteredException(UserRegisteredException ex, WebRequest request){
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
 }
