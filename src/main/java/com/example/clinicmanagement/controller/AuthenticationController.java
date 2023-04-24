@@ -1,4 +1,5 @@
 package com.example.clinicmanagement.controller;
+
 import com.example.clinicmanagement.model.AuthenticationRequest;
 import com.example.clinicmanagement.model.AuthenticationResponse;
 import com.example.clinicmanagement.model.RegisterRequest;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 @RestController
 @RequestMapping("/api/vi/auth1")
 @RequiredArgsConstructor
@@ -17,18 +19,16 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody
-                                                               RegisterRequest request
-    ){
+                                                                   RegisterRequest request
+    ) {
 
         return ResponseEntity.ok(authenticationService.register(request));
     }
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody
-                                                               AuthenticationRequest request){
+                                                                       AuthenticationRequest request) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
 
     }
-
-
 }

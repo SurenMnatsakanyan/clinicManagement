@@ -1,24 +1,24 @@
 package com.example.clinicmanagement.model;
+
 import com.example.clinicmanagement.dto.DoctorDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
 @Entity
 @Table
+
 public class Doctor {
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-
     @NotBlank
     private String firstName;
     @NotBlank
@@ -32,7 +32,7 @@ public class Doctor {
             joinColumns = @JoinColumn(name = "doctor_id"),
             inverseJoinColumns = @JoinColumn(name = "specification_id")
     )
-    private Set<Specification> specifications =  new HashSet<>();
+    private Set<Specification> specifications = new HashSet<>();
     @NotNull
     private LocalDate date;
     @Min(0)
@@ -44,18 +44,18 @@ public class Doctor {
     @NotBlank
     private String description;
 
-    public void setDoctor(Doctor doctor){
+    public void setDoctor(Doctor doctor) {
         this.firstName = doctor.firstName;
         this.lastName = doctor.lastName;
-        this.date =doctor.date;
+        this.date = doctor.date;
         this.yearsOfExperience = doctor.yearsOfExperience;
         this.description = doctor.description;
     }
 
-    public void setDoctorDto(DoctorDTO doctor){
+    public void setDoctorDto(DoctorDTO doctor) {
         this.firstName = doctor.getFirstName();
         this.lastName = doctor.getLastName();
-        this.date =doctor.getDate();
+        this.date = doctor.getDate();
         this.yearsOfExperience = doctor.getYearsOfExperience();
         this.description = doctor.getDescription();
     }

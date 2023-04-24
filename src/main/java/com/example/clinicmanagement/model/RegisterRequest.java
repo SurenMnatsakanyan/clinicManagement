@@ -1,4 +1,5 @@
 package com.example.clinicmanagement.model;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterRequest {
-    private  String firstName;
+    private String firstName;
     private String lastName;
     private String email;
     private String password;

@@ -1,9 +1,11 @@
 package com.example.clinicmanagement.service;
+
 import com.example.clinicmanagement.model.Specification;
 import com.example.clinicmanagement.repository.SpecificationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service

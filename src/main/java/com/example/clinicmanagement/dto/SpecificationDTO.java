@@ -1,11 +1,16 @@
 package com.example.clinicmanagement.dto;
-import com.example.clinicmanagement.model.Doctor;
+
 import com.example.clinicmanagement.model.Specification;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import java.util.Set;
+
+import java.util.Objects;
+
 @Data
+@Builder
+@AllArgsConstructor
 public class SpecificationDTO {
     private Long id;
     @NotEmpty
@@ -19,8 +24,21 @@ public class SpecificationDTO {
         this.name = name;
     }
 
-    public void setSpecification(Specification specification){
-        this.id  = specification.getId();
-        this.name= specification.getName();
+    public void setSpecification(Specification specification) {
+        this.id = specification.getId();
+        this.name = specification.getName();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SpecificationDTO that = (SpecificationDTO) o;
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
     }
 }

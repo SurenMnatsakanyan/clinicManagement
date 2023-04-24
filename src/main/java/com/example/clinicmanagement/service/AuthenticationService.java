@@ -1,4 +1,5 @@
 package com.example.clinicmanagement.service;
+
 import com.example.clinicmanagement.Excpetion.UserRegisteredException;
 import com.example.clinicmanagement.model.AuthenticationRequest;
 import com.example.clinicmanagement.model.AuthenticationResponse;
@@ -22,10 +23,11 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JWTService jwtService;
     private final AuthenticationManager authenticationManager;
+
     public AuthenticationResponse register(RegisterRequest request) throws UserRegisteredException {
         Optional<AppUser> appUser = userRepository.findByEmail(request.getEmail());
-        if(appUser.isPresent())
-            throw  new UserRegisteredException("User with this " + request.getEmail() + " exists");
+        if (appUser.isPresent())
+            throw new UserRegisteredException("User with this " + request.getEmail() + " exists");
         var user = AppUser.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
@@ -41,9 +43,9 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-    authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
-    var user = userRepository.findByEmail(request.getEmail()).orElseThrow(
-            () -> new UsernameNotFoundException("User not found "));
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        var user = userRepository.findByEmail(request.getEmail()).orElseThrow(
+                () -> new UsernameNotFoundException("User not found "));
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
